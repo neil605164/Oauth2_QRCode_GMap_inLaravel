@@ -1,0 +1,20 @@
+{
+    "name": "zuolar/quser",
+    "description": "QRCode package for laravel",
+    "require": {
+        "pragmarx/google2fa": "^1.0",
+        "robbiep/zbar-qrdecoder": "^2.0",
+        "bacon/bacon-qr-code": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Zoular",
+            "email": "zoular.li@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Zoular\\Quser\\": "src/"
+        }
+    }
+}
