@@ -29,6 +29,39 @@ function initMap()
 	document.getElementById('submit').addEventListener('click', function() {
 		geocodeAddress(geocoder, map);
 	});
+
+	//建立指定的區塊(可以用在選取上)
+	/*var triangleCoords = [
+	    	{lat: 25.774, lng: -80.19},
+	    	{lat: 18.466, lng: -66.118},
+	    	{lat: 32.321, lng: -64.757}
+  	];*/
+  	var myposition = [];
+
+  	//畫線(尚未取道自己的位置)
+	var region = new google.maps.Polygon({
+		paths: myposition,
+		strokeOpacity:0.8,
+		strokeColor:'#FF0000',
+		strokeWeight: 2,
+  		fillColor: '#FF0000',
+    		fillOpacity: 0.35,
+		map:map
+	});
+
+	//確定是否點有落在內部?
+	/*if(google.maps.geometry.poly.containsLocation(e.latLng, region)){
+		return true;
+	}*/
+
+	//增加標記
+	google.maps.event.addListener(map, 'click', function(e) {
+
+	    	new google.maps.Marker({
+	      		position: e.latLng,
+	      		map: map,
+		});
+	});
 }
 
 //添加用地址查詢的功能
