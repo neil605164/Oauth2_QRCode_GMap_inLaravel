@@ -49,13 +49,20 @@ function initMap()
 		map:map
 	});
 
-	//確定是否點有落在內部?
-	/*if(google.maps.geometry.poly.containsLocation(e.latLng, region)){
-		return true;
-	}*/
-
 	//增加標記
 	google.maps.event.addListener(map, 'click', function(e) {
+
+		//排除在選取範圍內的(只在範圍內的不得選取)
+		if(google.maps.geometry.poly.containsLocation(e.latLng, region)){
+			return ;
+		}
+
+		//取點選的標記
+		//myposition.push(e.latLng,.toJSON());
+
+		//
+
+	
 
 	    	new google.maps.Marker({
 	      		position: e.latLng,
