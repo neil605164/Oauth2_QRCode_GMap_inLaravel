@@ -45,7 +45,7 @@ function initMap()
 		strokeColor:'#FF0000',
 		strokeWeight: 2,
   		fillColor: '#FF0000',
-    		fillOpacity: 0.35,
+    	fillOpacity: 0.35,
 		map:map
 	});
 
@@ -58,15 +58,25 @@ function initMap()
 		}
 
 		//取點選的標記
-		//myposition.push(e.latLng,.toJSON());
+		myposition.push(e.latLng.toJSON());
 
-		//
+		//將圖形清除，併重新繪新的圖形
+		if(region) region.setMap(null);
 
+		//給region一個固定的形式
+    	region = new google.maps.Polygon({
+        paths: myposition,
+        fillOpacity: 0.3,//指定透明度0.0-1.0
+        fillColor: 'green',//指定填滿的顏色
+        strokeColor: 'white',//線的顏色
+        strokeWeight: 0.5,//線的粗細0.0-1.0
+        map:map
+    	});
 	
 
-	    	new google.maps.Marker({
-	      		position: e.latLng,
-	      		map: map,
+	    new google.maps.Marker({
+	      	position: e.latLng,
+	      	map: map,
 		});
 	});
 }
@@ -89,4 +99,19 @@ function geocodeAddress(geocoder, resultsMap)
 		alert('Geocode was not successful for the following reason: ' + status);
 		}
 	});
+}
+
+function display()
+{
+	var message = document.getElementById('Coordinate');
+
+	if (myposition.length === 0) { message.innerHTML = ''; return ;}
+	var output = '<div class="w3-example"><h3>項點座標</h3><div class="w3-code jsHigh notranslate">[<ul style="list-style-type:none">';
+	for(var i in myposition)
+	{
+		output += "<li>{ x: '" + myposition[i].lat + "', y: '" + myposition[i].lng + "' },</li>"
+	}
+
+	output += '</ul>]</div></div>';
+	message.innerHTML = output;
 }
