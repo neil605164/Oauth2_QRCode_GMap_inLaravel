@@ -1,4 +1,6 @@
 var map;
+var myposition = [];
+var region;
 
 //顯示地圖(最主要的)
 function initMap() 
@@ -30,22 +32,15 @@ function initMap()
 		geocodeAddress(geocoder, map);
 	});
 
-	//建立指定的區塊(可以用在選取上)
-	/*var triangleCoords = [
-	    	{lat: 25.774, lng: -80.19},
-	    	{lat: 18.466, lng: -66.118},
-	    	{lat: 32.321, lng: -64.757}
-  	];*/
-  	var myposition = [];
 
-  	//畫線(尚未取道自己的位置)
-	var region = new google.maps.Polygon({
+  	//畫線
+	region = new google.maps.Polygon({
 		paths: myposition,
 		strokeOpacity:0.8,
 		strokeColor:'#FF0000',
 		strokeWeight: 2,
   		fillColor: '#FF0000',
-    	fillOpacity: 0.35,
+    		fillOpacity: 0.35,
 		map:map
 	});
 
@@ -61,22 +56,24 @@ function initMap()
 		myposition.push(e.latLng.toJSON());
 
 		//將圖形清除，併重新繪新的圖形
-		if(region) region.setMap(null);
+		if(region){
+			 region.setMap(null);
+		}
 
 		//給region一個固定的形式
-    	region = new google.maps.Polygon({
-        paths: myposition,
-        fillOpacity: 0.3,//指定透明度0.0-1.0
-        fillColor: 'green',//指定填滿的顏色
-        strokeColor: 'white',//線的顏色
-        strokeWeight: 0.5,//線的粗細0.0-1.0
-        map:map
-    	});
-	
+	    	region = new google.maps.Polygon({
+			paths: myposition,
+		        	fillOpacity: 0.3,//指定透明度0.0-1.0
+		        	fillColor: 'green',//指定填滿的顏色
+		        	strokeColor: 'white',//線的顏色
+		        	strokeWeight: 0.5,//線的粗細0.0-1.0
+		        	map:map
+	    	});
+		
 
-	    new google.maps.Marker({
-	      	position: e.latLng,
-	      	map: map,
+	    	new google.maps.Marker({
+		      	position: e.latLng,
+		      	map: map,
 		});
 	});
 }
@@ -101,17 +98,28 @@ function geocodeAddress(geocoder, resultsMap)
 	});
 }
 
+
+
+//按下id為coordinate的按鈕後，去執行display這一個function
+document.getElementById('Coordinate').addEventListener('click', function() {
+		display();
+	});
+
+//顯示經緯度
 function display()
 {
-	var message = document.getElementById('Coordinate');
 
-	if (myposition.length === 0) { message.innerHTML = ''; return ;}
-	var output = '<div class="w3-example"><h3>項點座標</h3><div class="w3-code jsHigh notranslate">[<ul style="list-style-type:none">';
-	for(var i in myposition)
-	{
-		output += "<li>{ x: '" + myposition[i].lat + "', y: '" + myposition[i].lng + "' },</li>"
+	var message = document.getElementById('message');
+
+	//判定是否有標記
+	if (myposition.length === 0) { 
+		message.innerHTML = ''; return ;
 	}
-
-	output += '</ul>]</div></div>';
-	message.innerHTML = output;
+	
+	//列印經緯度
+	for(var i = 0; i < myposition.length; i++)
+	{
+		message.innerHTML += "[ x: '" + myposition[i].lat + "', y: '" + myposition[i].lng + "' ]<br>";
+	}
 }
+

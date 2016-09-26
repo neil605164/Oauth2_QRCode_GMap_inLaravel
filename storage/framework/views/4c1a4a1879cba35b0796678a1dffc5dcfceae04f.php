@@ -34,7 +34,7 @@ body, html {
             <li><a href="<?php echo e(url('/register')); ?>" class="w3-padding-large" >註冊</a></li>
         <?php else: ?>
             <li><a href="<?php echo e(url('/index')); ?>" class="w3-padding-large">HOME</a></li>
-             <li><a href="<?php echo e(url('/indexgoogle')); ?>" class="w3-padding-large">google</a></li>
+             <!--<li><a href="<?php echo e(url('/indexgoogle')); ?>" class="w3-padding-large">google</a></li>-->
             <li><li><a href="<?php echo e(url('/logout')); ?>" class="w3-padding-large ">Logout</a></li></li>
         <?php endif; ?>
     </ul>

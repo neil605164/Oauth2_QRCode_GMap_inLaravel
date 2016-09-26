@@ -34,7 +34,7 @@ body, html {
             <li><a href="{{ url('/register') }}" class="w3-padding-large" >註冊</a></li>
         @else
             <li><a href="{{ url('/index') }}" class="w3-padding-large">HOME</a></li>
-             <li><a href="{{ url('/indexgoogle') }}" class="w3-padding-large">google</a></li>
+             <!--<li><a href="{{ url('/indexgoogle') }}" class="w3-padding-large">google</a></li>-->
             <li><li><a href="{{ url('/logout') }}" class="w3-padding-large ">Logout</a></li></li>
         @endif
     </ul>
