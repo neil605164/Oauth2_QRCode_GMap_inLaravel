@@ -2,11 +2,11 @@
 
 <body >
 	<p>
-	<div id="map" class="w3-center " style="min-height: 500px; width: 600px"></div>
+	<div id="map" class="w3-center " style="min-height: 500px; width: 600px;border: 2px solid black; border-radius: 8px"></div>
 	</p>
 
 	<p>
-	<div id="message"  class="w3-center " style="min-height: 100px; width: 600px; border: 2px solid black; border-radius: 8px"></div>
+	<div id="message"  class="w3-center " style="min-height: 100px; width: 600px; border: 4px solid black; border-radius: 10px"></div>
 	</p>
 
 	<div id="floating-panel"  class="w3-center ">
